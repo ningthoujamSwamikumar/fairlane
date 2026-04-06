@@ -1,3 +1,5 @@
+import { Input } from "@ace-sdk/client";
+
 const pendingGroups = new Map();
 const replayLog = [];
 let replaySequence = 0;
@@ -12,7 +14,7 @@ export function resetPolicyEngine() {
   replaySequence = 0;
 }
 
-export function submitAction(input) {
+export function submitAction(input: Input) {
   validateAction(input);
 
   const now = Date.now();

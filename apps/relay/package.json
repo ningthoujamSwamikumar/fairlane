@@ -1,5 +1,8 @@
 {
   "name": "@ace-sdk/relay",
   "version": "0.1.0",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@ace-sdk/client": "workspace:*"
+  }
 }
