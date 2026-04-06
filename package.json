@@ -1,0 +1,20 @@
+{
+  "name": "ace-sdk-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "demo": "node ./apps/demo/demo.mjs",
+    "relay": "node ./apps/relay/src/server.js",
+    "test": "node --test ./packages/client/src/index.test.ts ./apps/relay/src/policy-engine.test.js"
+  },
+  "dependencies": {
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2"
+  }
+}
