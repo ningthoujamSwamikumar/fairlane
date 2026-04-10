@@ -1,0 +1,12 @@
+[2026-04-10T04:47:43.715309063Z INFO  solana_test_validator] agave-validator 3.1.6 (src:63057a7b; feat:2086771155, client:Agave)
+[2026-04-10T04:47:43.716063791Z INFO  solana_test_validator] Starting validator with: ArgsOs {
+        inner: [
+            "solana-test-validator",
+            "--reset",
+            "--quiet",
+        ],
+    }
+[2026-04-10T04:47:43.716943554Z WARN  solana_perf] CUDA is disabled
+[2026-04-10T04:47:43.716979464Z INFO  solana_perf] AVX detected
+[2026-04-10T04:47:43.716982782Z INFO  solana_perf] AVX2 detected
+[2026-04-10T04:47:43.729036636Z ERROR solana_faucet::faucet] Faucet failed to start: Operation not permitted (os error 1)

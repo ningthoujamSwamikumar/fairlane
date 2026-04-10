@@ -7,14 +7,13 @@
     "apps/*"
   ],
   "scripts": {
-    "demo": "node ./apps/demo/demo.mjs",
-    "relay": "node ./apps/relay/src/server.js",
-    "test": "node --test ./packages/client/src/index.test.ts ./apps/relay/src/policy-engine.test.js"
-  },
-  "dependencies": {
-    "typescript": "^6.0.2"
+    "build": "tsc -b",
+    "demo": "pnpm build && node ./apps/demo/demo.mjs",
+    "relay": "pnpm build && node ./apps/relay/dist/server.js",
+    "test": "pnpm build && node --test ./packages/client/dist/index.test.js ./apps/relay/dist/execution-adapter.test.js ./apps/relay/dist/policy-engine.test.js"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2"
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
   }
 }

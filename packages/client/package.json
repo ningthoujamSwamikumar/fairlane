@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -b"
   }
 }

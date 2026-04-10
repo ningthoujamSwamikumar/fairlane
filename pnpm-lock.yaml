@@ -16,7 +16,11 @@ importers:
         specifier: ^25.5.2
         version: 25.5.2
 
-  apps/relay: {}
+  apps/relay:
+    dependencies:
+      '@ace-sdk/client':
+        specifier: workspace:*
+        version: link:../../packages/client
 
   packages/client: {}
 

@@ -1,4 +1,5 @@
-import { Client, Input, Options, PoliciesMapConfigs, Policy, PolicyName } from "./types";
+import { resolveScopeKey } from "./classifier.js";
+import type { Client, Input, Options, PoliciesMapConfigs, Policy, PolicyName } from "./types.js";
 
 const DEFAULT_RELAY_URL = "http://127.0.0.1:8787";
 
@@ -6,8 +7,13 @@ export function createAceClient(options: Options = {}): Client {
   const relayUrl = options.relayUrl ?? DEFAULT_RELAY_URL;
 
   return {
+    /**
+     * Creates a typed policy object without forcing the caller to hand-roll the
+     * config shape. This keeps the public SDK small while still making policy
+     * intent explicit at call sites.
+     */
     policy<P extends PolicyName>(name: P, config: PoliciesMapConfigs[P]): Policy<P> {
-      return { name, config };
+      return { name, config } as Policy<P>;
     },
 
     async submit(input) {
@@ -33,6 +39,24 @@ export function createAceClient(options: Options = {}): Client {
       }
 
       return response.json();
+    },
+
+    async getDecisions() {
+      const response = await fetch(`${relayUrl}/decisions`);
+      if (!response.ok) {
+        throw new Error(`ACE relay decision fetch failed with status ${response.status}`);
+      }
+
+      return response.json();
+    },
+
+    async getDispatches() {
+      const response = await fetch(`${relayUrl}/dispatches`);
+      if (!response.ok) {
+        throw new Error(`ACE relay dispatch fetch failed with status ${response.status}`);
+      }
+
+      return response.json();
     }
   };
 }
@@ -50,9 +74,19 @@ function validateSubmitInput(input: Input) {
     throw new Error("submit input requires policy.name");
   }
 
-  if (!input.metadata?.groupKey) {
-    throw new Error("submit input requires metadata.groupKey");
+  if (!input.actionType) {
+    throw new Error("submit input requires actionType");
+  }
+
+  if (!resolveScopeKey(input)) {
+    throw new Error("submit input requires scope.key");
+  }
+
+  if (!input.metadata || typeof input.metadata !== "object") {
+    throw new Error("submit input requires metadata");
   }
 }
 
 export const ace = createAceClient();
+export { resolveScopeKey } from "./classifier.js";
+export * from "./types.js";
