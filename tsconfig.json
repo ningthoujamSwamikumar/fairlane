@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "./packages/client" },
-    { "path": "./apps/relay" }
+    { "path": "./apps/relay" },
+    { "path": "./apps/site" }
   ]
 }

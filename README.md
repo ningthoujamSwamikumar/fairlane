@@ -12,6 +12,7 @@ ACE SDK is a demo-first execution policy layer for Solana apps. This workspace i
 - `packages/client`: developer-facing ACE client
 - `apps/relay`: minimal policy engine and HTTP relay
 - `apps/demo`: scripted before/after demo flow
+- `apps/site`: Fairlane marketing site built with React, TypeScript, and Vite
 
 ## Product framing
 
@@ -25,9 +26,11 @@ From `/home/ubuntu/ace-sdk`:
 pnpm test
 pnpm relay
 pnpm demo
+pnpm site
 ```
 
 The relay listens on `http://127.0.0.1:8787`.
+The Fairlane site listens on `http://127.0.0.1:4321`.
 
 To point the relay at a local validator or BAM-backed cluster later:
 

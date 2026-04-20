@@ -10,6 +10,7 @@
     "build": "tsc -b",
     "demo": "pnpm build && node ./apps/demo/demo.mjs",
     "relay": "pnpm build && node ./apps/relay/dist/server.js",
+    "site": "pnpm --filter @ace-sdk/site dev -- --host 127.0.0.1 --port 4321",
     "test": "pnpm build && node --test ./packages/client/dist/index.test.js ./apps/relay/dist/execution-adapter.test.js ./apps/relay/dist/policy-engine.test.js"
   },
   "devDependencies": {
